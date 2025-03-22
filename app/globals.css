@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 1rem;
+
+    /* Custom properties */
+    --font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --dashboard-bg: 0 0% 100%;
+    --dashboard-pattern: none;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+
+    /* Custom properties */
+    --dashboard-bg: 220 40% 10%;
+    --dashboard-pattern: none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family);
+  }
+}
+
+.glass-effect {
+  @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-sm;
+}
+
+.dark .glass-effect {
+  @apply bg-black/10 border-white/5;
+}
+
+.widget {
+  @apply bg-card rounded-3xl shadow-sm overflow-hidden transition-all duration-300;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dark .widget {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.widget-header {
+  @apply p-4 flex items-center justify-between;
+}
+
+.widget-title {
+  @apply text-sm font-medium;
+}
+
+.widget-subtitle {
+  @apply text-xs text-muted-foreground;
+}
+
+.widget-content {
+  @apply p-4 flex-1;
+}
+
+.widget-edit-mode {
+  @apply scale-95 opacity-90;
+}
+
+.widget-edit-mode:hover {
+  @apply scale-100 opacity-100;
+}
+
+.widget-edit-mode::after {
+  content: "";
+  @apply absolute inset-0 bg-black/5 dark:bg-white/5 rounded-3xl pointer-events-none opacity-0;
+}
+
+.widget-edit-mode:hover::after {
+  @apply opacity-100;
+}
+
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top, width, height;
+}
+
+.react-grid-item.react-grid-placeholder {
+  @apply bg-primary/20 rounded-3xl border-2 border-primary/30;
+}
+
+.react-resizable-handle {
+  @apply opacity-0;
+}
+
+.widget-edit-mode .react-resizable-handle {
+  @apply opacity-50;
+}
+
+.react-resizable-handle::after {
+  @apply border-primary/50;
+}
+
+/* Background patterns */
+.bg-pattern-dots {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-pattern-grid {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-pattern-waves {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%) -10px 0,
+    linear-gradient(225deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%) -10px 0,
+    linear-gradient(315deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%);
+  background-size: 20px 20px;
+}
+
+.dark .bg-pattern-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+.dark .bg-pattern-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-pattern-waves {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%) -10px 0,
+    linear-gradient(225deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%) -10px 0,
+    linear-gradient(315deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%);
+}
+
+/* Modern header */
+.dashboard-header {
+  @apply flex items-center justify-between py-4 px-6 fixed top-0 left-0 right-0 z-50;
+  height: 70px;
+}
+
+.dashboard-title {
+  @apply text-xl font-medium tracking-tight uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: -0.03em;
+}
+
+.dashboard-content {
+  @apply pt-24 pb-6 px-6;
+}
+
+/* Modern buttons */
+.btn-minimal {
+  @apply rounded-md px-3 py-2 text-sm font-medium transition-colors;
+  @apply bg-transparent hover:bg-black/5 dark:hover:bg-white/5;
+  @apply border border-transparent hover:border-black/10 dark:hover:border-white/10;
+}
+
+.btn-icon {
+  @apply rounded-md p-2 transition-colors;
+  @apply bg-transparent hover:bg-black/5 dark:hover:bg-white/5;
+  @apply border border-transparent hover:border-black/10 dark:hover:border-white/10;
+}
+
